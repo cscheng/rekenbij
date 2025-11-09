@@ -1,8 +1,22 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getStaticPaths } from "./[slug].astro";
 
-const title = 'Optellen';
+const title = "Optellen";
+const paths = getStaticPaths();
 ---
+
 <BaseLayout title={title}>
-	<h1>{title}</h1>
+  <h1>{title}</h1>
+  <ul>
+    {
+      paths.map((path) => (
+        <li>
+          <a href={`${Astro.url.pathname}${path.params.slug}`}>
+            {path.props.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </BaseLayout>
