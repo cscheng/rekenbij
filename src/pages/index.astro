@@ -1,8 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getStaticPaths } from "./[category].astro";
+
+const categories = getStaticPaths();
 ---
 
 <BaseLayout>
   <h1>Rekenbij</h1>
-  <a href="/plussommen/">Plussommen</a>
+  <ul>
+    {
+      categories.map((category) => (
+        <li>
+          <a href={`/${category.params.category}`}>{category.props.title}</a>
+        </li>
+      ))
+    }
+  </ul>
 </BaseLayout>

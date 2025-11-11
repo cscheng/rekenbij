@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getStaticPaths as getQuizPaths } from "./[...path].astro";
+
+export function getStaticPaths() {
+  return [
+    {
+      params: { category: "plussommen" },
+      props: { title: "Plussommen" },
+    },
+  ];
+}
+
+const { title } = Astro.props;
+const { category } = Astro.params;
+
+const paths = getQuizPaths();
+const quizzes = paths.filter(({ params }) => {
+  const pathSegments = params.path.split("/");
+  return pathSegments[0] === category;
+});
+---
+
+<BaseLayout title={title}>
+  <a href="/">Terug</a>
+  <h1>{title}</h1>
+  <ul>
+    {
+      quizzes.map((quiz) => (
+        <li>
+          <a href={`/${quiz.params.path}`}>{quiz.props.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

@@ -1,12 +1,12 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { Operation } from "../../components/Operation";
-import Quiz from "../../components/Quiz.tsx";
-import type { MathQuestionGeneratorOptions } from "../../components/MathQuestionGenerator";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Operation } from "../components/Operation";
+import Quiz from "../components/Quiz.tsx";
+import type { MathQuestionGeneratorOptions } from "../components/MathQuestionGenerator";
 
 interface Page {
   title: string;
-  slug: string;
+  path: string;
   options: MathQuestionGeneratorOptions;
 }
 
@@ -14,7 +14,7 @@ export function getStaticPaths() {
   const pages: Page[] = [
     {
       title: "Plussommen tot 5",
-      slug: "plussommen-tot-5",
+      path: "plussommen/plussommen-tot-5",
       options: {
         operation: Operation.ADD,
         maxResult: 5,
@@ -22,7 +22,7 @@ export function getStaticPaths() {
     },
     {
       title: "Plussommen tot 10",
-      slug: "plussommen-tot-10",
+      path: "plussommen/plussommen-tot-10",
       options: {
         operation: Operation.ADD,
         maxResult: 10,
@@ -30,7 +30,7 @@ export function getStaticPaths() {
     },
     {
       title: "Plussommen tot 15",
-      slug: "plussommen-tot-15",
+      path: "plussommen/plussommen-tot-15",
       options: {
         operation: Operation.ADD,
         maxResult: 15,
@@ -38,15 +38,15 @@ export function getStaticPaths() {
     },
     {
       title: "Plussommen tot 20",
-      slug: "plussommen-tot-20",
+      path: "plussommen/plussommen-tot-20",
       options: {
         operation: Operation.ADD,
         maxResult: 20,
       },
     },
   ];
-  return pages.map(({ title, slug, options }) => ({
-    params: { slug },
+  return pages.map(({ title, path, options }) => ({
+    params: { path },
     props: { title, options },
   }));
 }
