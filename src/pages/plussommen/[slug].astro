@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Operation } from "../../components/Operation";
+import Quiz from "../../components/Quiz.tsx";
+import type { MathQuestionGeneratorOptions } from "../../components/MathQuestionGenerator";
+
+interface Page {
+  title: string;
+  slug: string;
+  options: MathQuestionGeneratorOptions;
+}
+
+export function getStaticPaths() {
+  const pages: Page[] = [
+    {
+      title: "Plussommen tot 5",
+      slug: "plussommen-tot-5",
+      options: {
+        operation: Operation.ADD,
+        maxResult: 5,
+      },
+    },
+    {
+      title: "Plussommen tot 10",
+      slug: "plussommen-tot-10",
+      options: {
+        operation: Operation.ADD,
+        maxResult: 10,
+      },
+    },
+    {
+      title: "Plussommen tot 15",
+      slug: "plussommen-tot-15",
+      options: {
+        operation: Operation.ADD,
+        maxResult: 15,
+      },
+    },
+    {
+      title: "Plussommen tot 20",
+      slug: "plussommen-tot-20",
+      options: {
+        operation: Operation.ADD,
+        maxResult: 20,
+      },
+    },
+  ];
+  return pages.map(({ title, slug, options }) => ({
+    params: { slug },
+    props: { title, options },
+  }));
+}
+
+const { title, options } = Astro.props;
+
+const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
+const parentPath = `/${pathSegments.slice(0, -1).join("/")}/`;
+---
+
+<BaseLayout title={title}>
+  <a href={parentPath}>Terug</a>
+  <h1>{title}</h1>
+  <Quiz options={options} client:only="react" />
+</BaseLayout>
