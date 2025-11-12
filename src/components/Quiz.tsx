@@ -1,17 +1,18 @@
 import { useState } from "react";
 import MathQuestion from "./MathQuestion";
-import MathQuestionGenerator from "./MathQuestionGenerator";
-import type { MathQuestionGeneratorOptions } from "./MathQuestionGenerator";
+import { generateQuestions } from "./MathQuestion";
+import type { GeneratorOptions } from "./MathQuestion";
 import QuizModel from "./Quiz";
 
-interface QuizProps {
-  options: MathQuestionGeneratorOptions;
-}
-
-export default function Quiz({ options }: QuizProps) {
+export default function Quiz<T extends keyof GeneratorOptions>({
+  type,
+  options,
+}: {
+  type: T;
+  options: GeneratorOptions[T];
+}) {
   const [quiz, setQuiz] = useState(() => {
-    const generator = new MathQuestionGenerator();
-    const questions = generator.generate(options);
+    const questions = generateQuestions(type, options);
     return new QuizModel(questions);
   });
   const [question, setQuestion] = useState(quiz.question() as MathQuestion);

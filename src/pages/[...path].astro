@@ -2,12 +2,15 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Operation } from "../components/Operation";
 import Quiz from "../components/Quiz.tsx";
-import type { MathQuestionGeneratorOptions } from "../components/MathQuestionGenerator";
+import type { GeneratorOptions } from "../components/MathQuestion";
 
-interface Page {
+interface Page<T extends keyof GeneratorOptions = keyof GeneratorOptions> {
   title: string;
   path: string;
-  options: MathQuestionGeneratorOptions;
+  quiz: {
+    type: T;
+    options: GeneratorOptions[T];
+  };
 }
 
 export function getStaticPaths() {
@@ -15,43 +18,71 @@ export function getStaticPaths() {
     {
       title: "Plussommen tot 5",
       path: "plussommen/plussommen-tot-5",
-      options: {
-        operation: Operation.ADD,
-        maxResult: 5,
+      quiz: {
+        type: Operation.ADD,
+        options: {
+          maxValue: 5,
+        },
       },
     },
     {
       title: "Plussommen tot 10",
       path: "plussommen/plussommen-tot-10",
-      options: {
-        operation: Operation.ADD,
-        maxResult: 10,
+      quiz: {
+        type: Operation.ADD,
+        options: {
+          maxValue: 10,
+        },
       },
     },
     {
       title: "Plussommen tot 15",
       path: "plussommen/plussommen-tot-15",
-      options: {
-        operation: Operation.ADD,
-        maxResult: 15,
+      quiz: {
+        type: Operation.ADD,
+        options: {
+          maxValue: 15,
+        },
       },
     },
     {
       title: "Plussommen tot 20",
       path: "plussommen/plussommen-tot-20",
-      options: {
-        operation: Operation.ADD,
-        maxResult: 20,
+      quiz: {
+        type: Operation.ADD,
+        options: {
+          maxValue: 20,
+        },
+      },
+    },
+    {
+      title: "Minsommen tot 5",
+      path: "minsommen/minsommen-tot-5",
+      quiz: {
+        type: Operation.SUBTRACT,
+        options: {
+          maxValue: 5,
+        },
+      },
+    },
+    {
+      title: "Minsommen tot 10",
+      path: "minsommen/minsommen-tot-10",
+      quiz: {
+        type: Operation.SUBTRACT,
+        options: {
+          maxValue: 10,
+        },
       },
     },
   ];
-  return pages.map(({ title, path, options }) => ({
+  return pages.map(({ title, path, quiz }) => ({
     params: { path },
-    props: { title, options },
+    props: { title, quiz },
   }));
 }
 
-const { title, options } = Astro.props;
+const { title, quiz } = Astro.props;
 
 const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
 const parentPath = `/${pathSegments.slice(0, -1).join("/")}/`;
@@ -60,5 +91,5 @@ const parentPath = `/${pathSegments.slice(0, -1).join("/")}/`;
 <BaseLayout title={title}>
   <a href={parentPath}>Terug</a>
   <h1>{title}</h1>
-  <Quiz options={options} client:only="react" />
+  <Quiz type={quiz.type} options={quiz.options} client:only="react" />
 </BaseLayout>
