@@ -1,18 +1,18 @@
 import { useState } from "react";
-import MathQuestion from "./MathQuestion";
 import { generateQuestions } from "./MathQuestion";
 import type { GeneratorOptions } from "./MathQuestion";
 import QuizModel from "./Quiz";
+import Question from "./Question.tsx";
 
 export default function Quiz({ type, options }: GeneratorOptions) {
   const [quiz, setQuiz] = useState(() => {
     const questions = generateQuestions({ type, options });
     return new QuizModel(questions);
   });
-  const [question, setQuestion] = useState(quiz.question() as MathQuestion);
+  const [question, setQuestion] = useState(() => quiz.question());
   const [answer, setAnswer] = useState("");
-  const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
+  const [isAnswered, setIsAnswered] = useState(false);
 
   return (
     <form
@@ -22,33 +22,29 @@ export default function Quiz({ type, options }: GeneratorOptions) {
           const isCorrect = quiz.answer(answer);
           setIsCorrect(isCorrect);
           setIsAnswered(true);
-        } else {
-          setIsAnswered(false);
         }
       }}
     >
-      <p>{`${question.a} ${question.operation} ${question.b} = ?`}</p>
-      <input
-        type="text"
-        value={answer}
-        onChange={(event) => setAnswer(event.target.value)}
+      <Question
+        question={question}
+        answer={answer}
+        isAnswered={isAnswered}
+        isCorrect={isCorrect}
+        setAnswer={setAnswer}
       />
       {isAnswered && (
-        <>
-          <p>Jouw antwoord is {isCorrect ? "juist" : "onjuist"}</p>
-          <p>
-            <button
-              onClick={() => {
-                quiz.next();
-                setQuestion(quiz.question() as MathQuestion);
-                setAnswer("");
-                setIsAnswered(false);
-              }}
-            >
-              Volgende
-            </button>
-          </p>
-        </>
+        <p>
+          <button
+            onClick={() => {
+              quiz.next();
+              setQuestion(quiz.question());
+              setAnswer("");
+              setIsAnswered(false);
+            }}
+          >
+            Volgende
+          </button>
+        </p>
       )}
     </form>
   );
