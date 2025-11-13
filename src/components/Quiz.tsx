@@ -6,7 +6,7 @@ import Question from "./Question.tsx";
 
 export default function Quiz({ type, options }: GeneratorOptions) {
   const [quiz, setQuiz] = useState(() => {
-    const questions = generateQuestions({ type, options, count: 2 });
+    const questions = generateQuestions({ type, options });
     return new QuizModel(questions);
   });
   const [question, setQuestion] = useState(() => quiz.getCurrentQuestion());
