@@ -9,20 +9,22 @@ export default class Quiz {
     this.questions = questions;
   }
 
-  question(): Question {
+  getCurrentQuestion(): Question {
     return this.questions[this.current];
   }
 
   next(): void {
     if (this.current < this.questions.length - 1) {
       this.current++;
-    } else {
-      this.isFinished = true;
     }
   }
 
-  answer(answer: string): boolean {
-    const currentQuestion = this.question();
-    return currentQuestion.checkAnswer(answer);
+  submitAnswer(answer: string): boolean {
+    const currentQuestion = this.getCurrentQuestion();
+    const isCorrect = currentQuestion.checkAnswer(answer);
+    if (this.current === this.questions.length - 1) {
+      this.isFinished = true;
+    }
+    return isCorrect;
   }
 }

@@ -1,25 +1,30 @@
 import { useState } from "react";
-import { generateQuestions } from "../quiz/MathQuestion";
 import type { GeneratorOptions } from "../quiz/MathQuestion";
+import { generateQuestions } from "../quiz/MathQuestion";
 import QuizModel from "../quiz/Quiz";
 import Question from "./Question.tsx";
 
 export default function Quiz({ type, options }: GeneratorOptions) {
   const [quiz, setQuiz] = useState(() => {
-    const questions = generateQuestions({ type, options });
+    const questions = generateQuestions({ type, options, count: 2 });
     return new QuizModel(questions);
   });
-  const [question, setQuestion] = useState(() => quiz.question());
+  const [question, setQuestion] = useState(() => quiz.getCurrentQuestion());
   const [answer, setAnswer] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
+
+  if (isFinished) {
+    return <p>Klaar!</p>;
+  }
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
         if (answer) {
-          const isCorrect = quiz.answer(answer);
+          const isCorrect = quiz.submitAnswer(answer);
           setIsCorrect(isCorrect);
           setIsAnswered(true);
         }
@@ -36,10 +41,14 @@ export default function Quiz({ type, options }: GeneratorOptions) {
         <p>
           <button
             onClick={() => {
-              quiz.next();
-              setQuestion(quiz.question());
-              setAnswer("");
-              setIsAnswered(false);
+              if (quiz.isFinished) {
+                setIsFinished(true);
+              } else {
+                quiz.next();
+                setQuestion(quiz.getCurrentQuestion());
+                setAnswer("");
+                setIsAnswered(false);
+              }
             }}
           >
             Volgende
