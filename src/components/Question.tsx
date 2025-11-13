@@ -1,16 +1,18 @@
-import type QuestionType from "../quiz/Question";
-import MathQuestion from "../quiz/MathQuestion";
+import MathQuestionClass from "../quiz/MathQuestion";
+import type QuestionClass from "../quiz/Question";
 import MathQuestionComponent from "./MathQuestion.tsx";
 
 export interface QuestionProps {
-  question: QuestionType;
+  question: QuestionClass;
   answer: string;
   isAnswered: boolean;
   isCorrect: boolean;
   setAnswer: (answer: string) => void;
 }
 
-const questionComponentMap = new Map([[MathQuestion, MathQuestionComponent]]);
+const questionComponentMap = new Map([
+  [MathQuestionClass, MathQuestionComponent],
+]);
 
 export default function Question({
   question,
