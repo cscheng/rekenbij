@@ -40,7 +40,8 @@ export default function Quiz({ type, options }: GeneratorOptions) {
       {isAnswered && (
         <p>
           <button
-            onClick={() => {
+            onClick={(event) => {
+              event.preventDefault(); // Prevent form submit
               if (quiz.isFinished) {
                 setIsFinished(true);
               } else {
