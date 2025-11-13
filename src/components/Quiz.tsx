@@ -4,15 +4,9 @@ import { generateQuestions } from "./MathQuestion";
 import type { GeneratorOptions } from "./MathQuestion";
 import QuizModel from "./Quiz";
 
-export default function Quiz<T extends keyof GeneratorOptions>({
-  type,
-  options,
-}: {
-  type: T;
-  options: GeneratorOptions[T];
-}) {
+export default function Quiz({ type, options }: GeneratorOptions) {
   const [quiz, setQuiz] = useState(() => {
-    const questions = generateQuestions(type, options);
+    const questions = generateQuestions({ type, options });
     return new QuizModel(questions);
   });
   const [question, setQuestion] = useState(quiz.question() as MathQuestion);

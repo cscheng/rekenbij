@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getStaticPaths } from "./[category].astro";
+import { getStaticPaths } from "./[path].astro";
 
 const categories = getStaticPaths();
 ---
@@ -11,7 +11,7 @@ const categories = getStaticPaths();
     {
       categories.map((category) => (
         <li>
-          <a href={`/${category.params.category}`}>{category.props.title}</a>
+          <a href={`/${category.params.path}`}>{category.props.title}</a>
         </li>
       ))
     }

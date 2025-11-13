@@ -1,27 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getStaticPaths as getQuizPaths } from "./[...path].astro";
+import { getCategoryPaths, getQuizPaths } from "../routes";
 
 export function getStaticPaths() {
-  return [
-    {
-      params: { category: "plussommen" },
-      props: { title: "Plussommen" },
-    },
-    {
-      params: { category: "minsommen" },
-      props: { title: "Minsommen" },
-    },
-  ];
+  return getCategoryPaths();
 }
 
 const { title } = Astro.props;
-const { category } = Astro.params;
+const { path } = Astro.params;
 
 const paths = getQuizPaths();
 const quizzes = paths.filter(({ params }) => {
   const pathSegments = params.path.split("/");
-  return pathSegments[0] === category;
+  return pathSegments[0] === path;
 });
 ---
 

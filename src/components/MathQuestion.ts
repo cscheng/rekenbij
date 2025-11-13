@@ -34,15 +34,25 @@ export default class MathQuestion implements Question {
   }
 }
 
-type AdditionOptions = {
+interface AdditionOptions {
   maxValue: number;
-};
+}
 
-type SubtractionOptions = AdditionOptions;
+interface SubtractionOptions {
+  maxValue: number;
+}
 
-export type GeneratorOptions = {
-  [Operation.ADD]: AdditionOptions;
-  [Operation.SUBTRACT]: SubtractionOptions;
+export type GeneratorOptions = (
+  | {
+      type: Operation.ADD;
+      options: AdditionOptions;
+    }
+  | {
+      type: Operation.SUBTRACT;
+      options: SubtractionOptions;
+    }
+) & {
+  count?: number;
 };
 
 function getRandomNumber(min: number, max: number): number {
@@ -68,11 +78,11 @@ const generators = {
   [Operation.SUBTRACT]: createSubtractionQuestion,
 };
 
-export function generateQuestions<T extends keyof GeneratorOptions>(
-  type: T,
-  options: GeneratorOptions[T],
-  count: number = 10
-): Question[] {
+export function generateQuestions({
+  type,
+  options,
+  count = 10,
+}: GeneratorOptions): Question[] {
   const generator = generators[type];
   return Array.from({ length: count }, () => generator(options));
 }
