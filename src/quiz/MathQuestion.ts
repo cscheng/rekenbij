@@ -71,6 +71,14 @@ const createAdditionQuestion: MathQuestionGenerator = (
   return new MathQuestion(Operation.ADD, a, b);
 };
 
+const createSubtractionQuestion: MathQuestionGenerator = (
+  options: SubtractionOptions
+) => {
+  const a = getRandomNumber(1, options.maxValue);
+  const b = getRandomNumber(0, a); // Prevent negative result
+  return new MathQuestion(Operation.SUBTRACT, a, b);
+};
+
 const createMathQuestions = (
   generatorFn: MathQuestionGenerator,
   options: GeneratorOptions["options"],
@@ -93,31 +101,11 @@ const createMathQuestions = (
   return questions;
 };
 
-const createAdditionQuestions = (
-  options: AdditionOptions,
-  count: number
-): MathQuestion[] => {
-  return createMathQuestions(createAdditionQuestion, options, count);
-};
-
-const createSubtractionQuestion: MathQuestionGenerator = (
-  options: SubtractionOptions
-) => {
-  const a = getRandomNumber(1, options.maxValue);
-  const b = getRandomNumber(0, a); // Prevent negative result
-  return new MathQuestion(Operation.SUBTRACT, a, b);
-};
-
-const createSubtractionQuestions = (
-  options: SubtractionOptions,
-  count: number
-): MathQuestion[] => {
-  return createMathQuestions(createSubtractionQuestion, options, count);
-};
-
 const generators = {
-  [Operation.ADD]: createAdditionQuestions,
-  [Operation.SUBTRACT]: createSubtractionQuestions,
+  [Operation.ADD]: (options: AdditionOptions, count: number) =>
+    createMathQuestions(createAdditionQuestion, options, count),
+  [Operation.SUBTRACT]: (options: SubtractionOptions, count: number) =>
+    createMathQuestions(createSubtractionQuestion, options, count),
 };
 
 export function generateQuestions({
