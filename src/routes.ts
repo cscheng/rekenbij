@@ -1,5 +1,5 @@
-import type { GeneratorOptions } from "./components/MathQuestion";
-import { Operation } from "./components/Operation";
+import type { GeneratorOptions } from "./quiz/MathQuestion";
+import { Operation } from "./quiz/Operation";
 
 interface QuizPage {
   title: string;

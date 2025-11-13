@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { generateQuestions } from "./MathQuestion";
-import type { GeneratorOptions } from "./MathQuestion";
-import QuizModel from "./Quiz";
+import { generateQuestions } from "../quiz/MathQuestion";
+import type { GeneratorOptions } from "../quiz/MathQuestion";
+import QuizModel from "../quiz/Quiz";
 import Question from "./Question.tsx";
 
 export default function Quiz({ type, options }: GeneratorOptions) {

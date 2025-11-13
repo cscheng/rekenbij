@@ -1,5 +1,5 @@
-import type QuestionType from "./Question";
-import MathQuestion from "./MathQuestion";
+import type QuestionType from "../quiz/Question";
+import MathQuestion from "../quiz/MathQuestion";
 import MathQuestionComponent from "./MathQuestion.tsx";
 
 export interface QuestionProps {
