@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { GeneratorOptions } from "../quiz/MathQuestion";
 import { generateQuestions } from "../quiz/MathQuestion";
 import QuizModel from "../quiz/Quiz";
 import Question from "./Question.tsx";
 
 export default function Quiz({ type, options }: GeneratorOptions) {
-  const [quiz, setQuiz] = useState(() => {
+  const quiz = useMemo(() => {
     const questions = generateQuestions({ type, options });
     return new QuizModel(questions);
-  });
+  }, [type, options]);
   const [question, setQuestion] = useState(() => quiz.getCurrentQuestion());
   const [answer, setAnswer] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
