@@ -1,5 +1,5 @@
-import type { GeneratorOptions } from "./quiz/questionGenerators";
 import { Operation } from "./quiz/Operation";
+import type { GeneratorOptions } from "./quiz/questionGenerators";
 
 interface QuizPage {
   title: string;
@@ -75,6 +75,53 @@ export const pages: CategoryPage[] = [
         },
       },
     ],
+  },
+  {
+    title: "Tafels",
+    quizzes: (() => {
+      const tables1to5: QuizPage[] = Array.from({ length: 5 }, (_, i) => ({
+        title: `Tafel van ${i + 1}`,
+        quiz: {
+          type: Operation.MULTIPLY,
+          options: {
+            multiplier: i + 1,
+          },
+        },
+      }));
+      const tablesCombined1to5: QuizPage = {
+        title: "Tafel van 1-5",
+        quiz: {
+          type: Operation.MULTIPLY,
+          options: {
+            multiplier: [1, 2, 3, 4, 5],
+          },
+        },
+      };
+      const tables6to10: QuizPage[] = Array.from({ length: 5 }, (_, i) => ({
+        title: `Tafel van ${i + 6}`,
+        quiz: {
+          type: Operation.MULTIPLY,
+          options: {
+            multiplier: i + 6,
+          },
+        },
+      }));
+      const tablesCombined6to10: QuizPage = {
+        title: "Tafel van 6-10",
+        quiz: {
+          type: Operation.MULTIPLY,
+          options: {
+            multiplier: [6, 7, 8, 9, 10],
+          },
+        },
+      };
+      return [
+        ...tables1to5,
+        tablesCombined1to5,
+        ...tables6to10,
+        tablesCombined6to10,
+      ];
+    })(),
   },
 ];
 

@@ -10,6 +10,10 @@ interface SubtractionOptions {
   maxValue: number;
 }
 
+interface MultiplicationOptions {
+  multiplier: number | number[];
+}
+
 export type GeneratorOptions = (
   | {
       type: Operation.ADD;
@@ -19,6 +23,10 @@ export type GeneratorOptions = (
       type: Operation.SUBTRACT;
       options: SubtractionOptions;
     }
+  | {
+      type: Operation.MULTIPLY;
+      options: MultiplicationOptions;
+    }
 ) & {
   count?: number;
 };
@@ -27,29 +35,31 @@ function getRandomNumber(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-type MathQuestionGenerator = (
-  options: GeneratorOptions["options"]
-) => MathQuestion;
-
-const createAdditionQuestion: MathQuestionGenerator = (
-  options: AdditionOptions
-) => {
-  const a = getRandomNumber(1, options.maxValue);
-  const b = getRandomNumber(0, options.maxValue - a); // Limit max result
+const createAdditionQuestion = ({ maxValue }: AdditionOptions) => {
+  const a = getRandomNumber(1, maxValue);
+  const b = getRandomNumber(0, maxValue - a); // Limit max result
   return new MathQuestion(Operation.ADD, a, b);
 };
 
-const createSubtractionQuestion: MathQuestionGenerator = (
-  options: SubtractionOptions
-) => {
-  const a = getRandomNumber(1, options.maxValue);
+const createSubtractionQuestion = ({ maxValue }: SubtractionOptions) => {
+  const a = getRandomNumber(1, maxValue);
   const b = getRandomNumber(0, a); // Prevent negative result
   return new MathQuestion(Operation.SUBTRACT, a, b);
 };
 
-const createMathQuestions = (
-  generatorFn: MathQuestionGenerator,
-  options: GeneratorOptions["options"],
+const createMultiplicationQuestion = ({
+  multiplier,
+}: MultiplicationOptions) => {
+  const multiplicand = getRandomNumber(1, 10);
+  if (Array.isArray(multiplier)) {
+    multiplier = multiplier[Math.floor(Math.random() * multiplier.length)];
+  }
+  return new MathQuestion(Operation.MULTIPLY, multiplicand, multiplier);
+};
+
+const createMathQuestions = <T extends GeneratorOptions["options"]>(
+  generatorFn: (options: T) => MathQuestion,
+  options: T,
   count: number
 ): MathQuestion[] => {
   const questions = [];
@@ -69,18 +79,17 @@ const createMathQuestions = (
   return questions;
 };
 
-const generators = {
-  [Operation.ADD]: (options: AdditionOptions, count: number) =>
-    createMathQuestions(createAdditionQuestion, options, count),
-  [Operation.SUBTRACT]: (options: SubtractionOptions, count: number) =>
-    createMathQuestions(createSubtractionQuestion, options, count),
-};
-
 export function generateQuestions({
   type,
   options,
   count = 10,
 }: GeneratorOptions): Question[] {
-  const generator = generators[type];
-  return generator(options, count);
+  switch (type) {
+    case Operation.ADD:
+      return createMathQuestions(createAdditionQuestion, options, count);
+    case Operation.SUBTRACT:
+      return createMathQuestions(createSubtractionQuestion, options, count);
+    case Operation.MULTIPLY:
+      return createMathQuestions(createMultiplicationQuestion, options, count);
+  }
 }
