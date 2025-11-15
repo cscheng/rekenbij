@@ -15,6 +15,5 @@ const parentPath = `/${pathSegments.slice(0, -1).join("/")}/`;
 
 <BaseLayout title={title}>
   <a href={parentPath}>Terug</a>
-  <h1>{title}</h1>
-  <Quiz type={quiz.type} options={quiz.options} client:only="react" />
+  <Quiz {...quiz} client:only="react" />
 </BaseLayout>
