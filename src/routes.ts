@@ -1,4 +1,4 @@
-import type { GeneratorOptions } from "./quiz/MathQuestion";
+import type { GeneratorOptions } from "./quiz/questionGenerators";
 import { Operation } from "./quiz/Operation";
 
 interface QuizPage {

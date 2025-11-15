@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import type { GeneratorOptions } from "../quiz/MathQuestion";
-import { generateQuestions } from "../quiz/MathQuestion";
+import type { GeneratorOptions } from "../quiz/questionGenerators";
+import { generateQuestions } from "../quiz/questionGenerators";
 import QuizModel from "../quiz/Quiz";
 import Question from "./Question.tsx";
 
