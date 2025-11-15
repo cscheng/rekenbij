@@ -12,16 +12,73 @@ const { category } = Astro.params;
 const quizzes = getQuizPaths(category);
 ---
 
-<BaseLayout title={title}>
-  <a href="/">Terug</a>
-  <h1>{title}</h1>
-  <ul>
-    {
-      quizzes.map((quiz) => (
-        <li>
-          <a href={`/${quiz.params.quiz}`}>{quiz.props.title}</a>
-        </li>
-      ))
+<style>
+  header {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem 0;
+
+    nav a {
+      font-size: 16px;
+      text-decoration: none;
+      color: var(--secondary-text-color);
+
+      &:hover {
+        color: var(--red-color);
+      }
     }
-  </ul>
+  }
+
+  main {
+    max-width: 600px;
+    margin: 0 auto;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      display: block;
+      padding: 1rem;
+      background-color: var(--grey-color);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 700;
+
+      &:hover {
+        background-color: var(--teal-color);
+      }
+    }
+  }
+</style>
+
+<BaseLayout title={title}>
+  <header>
+    <nav>
+      <a href="/">Terug</a>
+    </nav>
+  </header>
+  <main>
+    <h1>{title}</h1>
+    <p>Kies een oefening</p>
+    <nav>
+      <ul>
+        {
+          quizzes.map((quiz) => (
+            <li>
+              <a href={`/${quiz.params.quiz}`}>{quiz.props.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </main>
 </BaseLayout>

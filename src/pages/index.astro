@@ -5,15 +5,72 @@ import { getStaticPaths } from "./[category].astro";
 const categories = getStaticPaths();
 ---
 
-<BaseLayout>
-  <h1>Rekenbij</h1>
-  <ul>
-    {
-      categories.map((category) => (
-        <li>
-          <a href={`/${category.params.category}`}>{category.props.title}</a>
-        </li>
-      ))
+<style>
+  h1 {
+    font-size: 80px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .header-container {
+    background-color: var(--yellow-color);
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  nav {
+    margin: 2rem auto;
+    max-width: 600px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
-  </ul>
+
+    li {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      display: block;
+      border: 3px solid var(--teal-color);
+      padding: 1rem;
+      color: var(--text-color);
+      background-color: var(--teal-color);
+      text-decoration: none;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+
+      &:hover {
+        background-color: #fff;
+        color: var(--teal-color);
+      }
+    }
+  }
+</style>
+
+<BaseLayout>
+  <div class="header-container">
+    <h1>Rekenbij</h1>
+    <p>Rekensommen oefenen voor groep 3 en 4</p>
+  </div>
+  <nav>
+    <ul>
+      {
+        categories.map((category) => (
+          <li>
+            <a href={`/${category.params.category}`}>{category.props.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
 </BaseLayout>
