@@ -85,18 +85,21 @@ const slugify = (title: string) => {
 export const getCategoryPaths = () =>
   pages.map((category) => ({
     params: {
-      path: slugify(category.title),
+      category: slugify(category.title),
     },
     props: {
       title: category.title,
     },
   }));
 
-export const getQuizPaths = () =>
+export const getQuizPaths = (parentPath?: string) =>
   pages.flatMap((category) => {
-    const parentPath = slugify(category.title);
+    const categoryPath = slugify(category.title);
+    if (parentPath && categoryPath !== parentPath) {
+      return [];
+    }
     return category.quizzes.map((quiz) => ({
-      params: { path: `${parentPath}/${slugify(quiz.title)}` },
+      params: { quiz: `${categoryPath}/${slugify(quiz.title)}` },
       props: {
         title: quiz.title,
         quiz: quiz.quiz,
