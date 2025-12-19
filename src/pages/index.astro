@@ -1,4 +1,5 @@
 ---
+import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getStaticPaths } from "./[category].astro";
 
@@ -6,25 +7,6 @@ const categories = getStaticPaths();
 ---
 
 <style>
-  header {
-    margin: 20px auto;
-    border-radius: 16px;
-    max-width: var(--max-width);
-    padding: 2rem 0;
-    background-color: color-mix(in srgb, var(--yellow-color) 15%, white);
-  }
-
-  .logo {
-    font-size: 60px;
-    font-weight: 700;
-    text-align: center;
-    text-transform: lowercase;
-
-    span:nth-child(even) {
-      color: var(--yellow-color);
-    }
-  }
-
   main {
     border-radius: 16px;
     max-width: var(--max-width);
@@ -124,12 +106,7 @@ const categories = getStaticPaths();
 </style>
 
 <BaseLayout>
-  <header>
-    <div class="logo">
-      <span>R</span><span>e</span><span>k</span><span>e</span><span>n</span>
-      <span>b</span><span>ij</span>
-    </div>
-  </header>
+  <Header />
   <main>
     <h1>Ik wil oefenen met</h1>
     <nav>

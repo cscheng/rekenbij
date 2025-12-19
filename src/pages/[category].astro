@@ -1,4 +1,5 @@
 ---
+import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCategoryPaths, getQuizPaths } from "../routes";
 
@@ -13,45 +14,6 @@ const quizzes = getQuizPaths(category);
 ---
 
 <style>
-  header {
-    padding: 1rem 0;
-
-    nav {
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
-    a {
-      display: inline-block;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background-color: #e2e8f0;
-      background-color: #ddd;
-      text-decoration: none;
-      text-align: center;
-      color: white;
-      transition: background-color 0.2s;
-
-      &::before {
-        content: "←";
-      }
-
-      &:hover {
-        background-color: var(--grey-color);
-      }
-
-      /* Hide text accessibly */
-      font-size: 0;
-      line-height: 0;
-
-      &::before {
-        font-size: 16px;
-        line-height: 32px;
-      }
-    }
-  }
-
   main {
     max-width: 600px;
     margin: 0 auto;
@@ -95,11 +57,7 @@ const quizzes = getQuizPaths(category);
 </style>
 
 <BaseLayout title={title}>
-  <header>
-    <nav>
-      <a href="/" aria-label="Terug">Terug</a>
-    </nav>
-  </header>
+  <Header showBackButton={true} />
   <main>
     <h1>{title}</h1>
     <p>Kies een oefening</p>
