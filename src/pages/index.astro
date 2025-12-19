@@ -10,12 +10,12 @@ const categories = getStaticPaths();
     margin: 20px auto;
     border-radius: 16px;
     max-width: var(--max-width);
-    padding: 4rem;
+    padding: 2rem 0;
     background-color: color-mix(in srgb, var(--yellow-color) 15%, white);
   }
 
   .logo {
-    font-size: 80px;
+    font-size: 60px;
     font-weight: 700;
     text-align: center;
     text-transform: lowercase;
@@ -25,15 +25,22 @@ const categories = getStaticPaths();
     }
   }
 
-  p {
-    font-size: 20px;
-    text-align: center;
+  main {
+    border-radius: 16px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: color-mix(in srgb, black 5%, white);
+    background-color: #f8f5f2;
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+    font-weight: normal;
+    color: var(--text-color);
   }
 
   nav {
-    margin: 2rem auto;
-    max-width: 600px;
-
     ul {
       list-style: none;
       padding: 0;
@@ -43,59 +50,73 @@ const categories = getStaticPaths();
       gap: 1rem;
     }
 
-    li {
-      a {
-        display: block;
-        color: var(--text-color);
-        text-decoration: none;
-        border-radius: 16px;
-        border-bottom-width: 4px;
-        border-bottom-style: solid;
-        text-align: center;
-        height: 54px;
-        font-size: 16px;
-        line-height: 54px;
-        font-weight: 700;
-        text-transform: uppercase;
+    a {
+      position: relative;
+      display: block;
+      border-radius: 27px;
+      border-width: 2px;
+      border-style: solid;
+      height: 54px;
+      padding-left: 3rem;
+      font-size: 16px;
+      line-height: 54px;
+      text-decoration: none;
+      color: var(--text-color);
+      transition: all 0.1s;
 
-        &:hover {
-          filter: brightness(1.1);
-        }
+      &::before {
+        content: "";
+        position: absolute;
+        left: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        font-weight: bold;
       }
 
-      &:nth-child(1) a {
+      &[data-category="plussommen"] {
         background-color: var(--green-color);
-        border-bottom-color: color-mix(in srgb, var(--green-color) 70%, black);
+        border-color: var(--green-color);
+        color: white;
+
+        &::before {
+          content: "+";
+        }
 
         &:hover {
-          background-color: var(--green-color);
-          border-bottom-color: color-mix(
-            in srgb,
-            var(--green-color) 85%,
-            black
-          );
+          background-color: white;
+          /* background-color: color-mix(in srgb, var(--green-color) 50%, white); */
+          color: var(--green-color);
         }
       }
 
-      &:nth-child(2) a {
-        background-color: var(--blue-color);
-        border-bottom-color: color-mix(in srgb, var(--blue-color) 70%, black);
-
-        &:hover {
-          border-bottom-color: color-mix(in srgb, var(--blue-color) 85%, black);
-        }
-      }
-
-      &:nth-child(3) a {
+      &[data-category="minsommen"] {
         background-color: var(--orange-color);
-        border-bottom-color: color-mix(in srgb, var(--orange-color) 70%, black);
+        border-color: var(--orange-color);
+        color: white;
+
+        &::before {
+          content: "−";
+        }
 
         &:hover {
-          border-bottom-color: color-mix(
-            in srgb,
-            var(--orange-color) 85%,
-            black
-          );
+          background-color: white;
+          color: var(--orange-color);
+        }
+      }
+
+      &[data-category="tafels"] {
+        background-color: var(--blue-color);
+        border-color: var(--blue-color);
+        color: white;
+
+        &::before {
+          content: "×";
+        }
+
+        &:hover {
+          background-color: white;
+          color: var(--blue-color);
         }
       }
     }
@@ -109,16 +130,23 @@ const categories = getStaticPaths();
       <span>b</span><span>ij</span>
     </div>
   </header>
-  <p>Rekensommen oefenen voor groep 3 en 4</p>
-  <nav>
-    <ul>
-      {
-        categories.map((category) => (
-          <li>
-            <a href={`/${category.params.category}`}>{category.props.title}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
+  <main>
+    <h1>Ik wil oefenen met</h1>
+    <nav>
+      <ul>
+        {
+          categories.map((category) => (
+            <li>
+              <a
+                href={`/${category.params.category}`}
+                data-category={category.params.category}
+              >
+                {category.props.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </main>
 </BaseLayout>
