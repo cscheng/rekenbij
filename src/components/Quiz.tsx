@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { GeneratorOptions } from "../quiz/questionGenerators";
 import { generateQuestions } from "../quiz/questionGenerators";
 import QuizModel from "../quiz/Quiz";
@@ -14,6 +14,26 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
   const [isCorrect, setIsCorrect] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+
+  const next = () => {
+    if (quiz.isFinished) {
+      setIsFinished(true);
+    } else {
+      quiz.next();
+      setQuestion(quiz.getCurrentQuestion());
+      setAnswer("");
+      setIsAnswered(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isAnswered && isCorrect) {
+      const timer = setTimeout(() => {
+        next();
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isAnswered, isCorrect]);
 
   if (isFinished) {
     return <p>Klaar!</p>;
@@ -37,19 +57,12 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
         isCorrect={isCorrect}
         setAnswer={setAnswer}
       />
-      {isAnswered && (
+      {isAnswered && !isCorrect && (
         <p>
           <button
             onClick={(event) => {
               event.preventDefault(); // Prevent form submit
-              if (quiz.isFinished) {
-                setIsFinished(true);
-              } else {
-                quiz.next();
-                setQuestion(quiz.getCurrentQuestion());
-                setAnswer("");
-                setIsAnswered(false);
-              }
+              next();
             }}
           >
             Volgende
