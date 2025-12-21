@@ -13,7 +13,39 @@ const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
 const parentPath = `/${pathSegments.slice(0, -1).join("/")}/`;
 ---
 
+<style>
+  header {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 1rem 0;
+
+    nav a {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #e2e8f0;
+      color: white;
+      font-size: 16px;
+      line-height: 32px;
+      text-decoration: none;
+      text-align: center;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: var(--grey-color);
+      }
+    }
+  }
+</style>
+
 <BaseLayout title={title}>
-  <a href={parentPath}>Terug</a>
-  <Quiz {...quiz} client:only="react" />
+  <header>
+    <nav>
+      <a href={parentPath}>&times;</a>
+    </nav>
+  </header>
+  <main>
+    <Quiz {...quiz} client:only="react" />
+  </main>
 </BaseLayout>
