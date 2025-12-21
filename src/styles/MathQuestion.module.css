@@ -23,8 +23,16 @@
   outline: none;
   text-align: center;
   min-height: 1em;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  transition: all 0.1s;
   background-color: #fff;
   color: #000;
   caret-color: #4f9efc;
+
+  &.correct {
+    border-color: var(--green-color);
+  }
+
+  &.incorrect {
+    border-color: var(--red-color);
+  }
 }

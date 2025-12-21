@@ -18,7 +18,9 @@ export default function MathQuestion({
       <p className={styles.equation}>
         {question.a} {question.operation} {question.b} ={" "}
         <input
-          className={styles.numberInput}
+          className={`${styles.numberInput} ${
+            isAnswered ? (isCorrect ? styles.correct : styles.incorrect) : ""
+          }`}
           type="text"
           value={answer}
           onChange={(event) => setAnswer(event.target.value)}
