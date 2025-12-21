@@ -56,19 +56,8 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
         isAnswered={isAnswered}
         isCorrect={isCorrect}
         setAnswer={setAnswer}
+        onNext={next}
       />
-      {isAnswered && !isCorrect && (
-        <p>
-          <button
-            onClick={(event) => {
-              event.preventDefault(); // Prevent form submit
-              next();
-            }}
-          >
-            Volgende
-          </button>
-        </p>
-      )}
     </form>
   );
 }
