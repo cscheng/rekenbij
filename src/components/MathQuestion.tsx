@@ -32,6 +32,7 @@ export default function MathQuestion({
           type="text"
           value={answer}
           onChange={(event) => setAnswer(event.target.value)}
+          readOnly={isAnswered}
         />
       </p>
 
