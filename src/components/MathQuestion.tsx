@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import MathQuestionType from "../quiz/MathQuestion";
 import styles from "../styles/MathQuestion.module.css";
 import type { QuestionProps } from "./Question.tsx";
@@ -13,11 +14,18 @@ export default function MathQuestion({
   isCorrect,
   setAnswer,
 }: MathQuestionProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
     <section className={styles.mathQuestion}>
       <p className={styles.equation}>
         {question.a} {question.operation} {question.b} ={" "}
         <input
+          ref={inputRef}
           className={`${styles.numberInput} ${
             isAnswered ? (isCorrect ? styles.correct : styles.incorrect) : ""
           }`}
