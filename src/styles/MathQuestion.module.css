@@ -36,3 +36,34 @@
     border-color: var(--red-color);
   }
 }
+
+.feedback {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.feedbackText {
+  margin: 0 0 1rem;
+}
+
+.nextButton {
+  display: inline-block;
+  border-radius: 27px;
+  border-width: 2px;
+  border-style: solid;
+  height: 54px;
+  padding: 0 2rem;
+  font-size: 16px;
+  line-height: 50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.1s;
+  background-color: #64748b;
+  border-color: #64748b;
+  color: white;
+
+  &:hover {
+    background-color: white;
+    color: #64748b;
+  }
+}

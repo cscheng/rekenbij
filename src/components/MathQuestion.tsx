@@ -39,10 +39,13 @@ export default function MathQuestion({
       </p>
 
       {isAnswered && !isCorrect && (
-        <>
-          <p>Het juiste antwoord is {question.answer}.</p>
+        <div className={styles.feedback}>
+          <p className={styles.feedbackText}>
+            Het juiste antwoord is {question.answer}.
+          </p>
           <p>
             <button
+              className={styles.nextButton}
               onClick={(event) => {
                 event.preventDefault();
                 onNext();
@@ -51,7 +54,7 @@ export default function MathQuestion({
               Volgende
             </button>
           </p>
-        </>
+        </div>
       )}
     </section>
   );
