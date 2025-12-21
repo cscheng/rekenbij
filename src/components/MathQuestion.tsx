@@ -27,7 +27,9 @@ export default function MathQuestion({
         />
       </p>
 
-      {isAnswered && <p>Het antwoord is {isCorrect ? "juist" : "onjuist"}</p>}
+      {isAnswered && !isCorrect && (
+        <p>Het juiste antwoord is {question.answer}.</p>
+      )}
     </section>
   );
 }
