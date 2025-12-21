@@ -4,11 +4,11 @@ import { generateQuestions } from "../quiz/questionGenerators";
 import QuizModel from "../quiz/Quiz";
 import Question from "./Question.tsx";
 
-export default function Quiz({ type, options }: GeneratorOptions) {
+export default function Quiz(generatorOptions: GeneratorOptions) {
   const quiz = useMemo(() => {
-    const questions = generateQuestions({ type, options });
+    const questions = generateQuestions(generatorOptions);
     return new QuizModel(questions);
-  }, [type, options]);
+  }, [generatorOptions]);
   const [question, setQuestion] = useState(() => quiz.getCurrentQuestion());
   const [answer, setAnswer] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
