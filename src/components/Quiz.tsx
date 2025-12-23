@@ -3,6 +3,8 @@ import type { GeneratorOptions } from "../quiz/questionGenerators";
 import { generateQuestions } from "../quiz/questionGenerators";
 import QuizModel from "../quiz/Quiz";
 import styles from "../styles/Quiz.module.css";
+import CorrectIcon from "./CorrectIcon.tsx";
+import IncorrectIcon from "./IncorrectIcon.tsx";
 import Question from "./Question.tsx";
 
 export default function Quiz(generatorOptions: GeneratorOptions) {
@@ -49,38 +51,23 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
               Je hebt {totalQuestions} vragen beantwoord:
             </p>
             <div className={styles.statItem}>
-              <svg
+              <CorrectIcon
                 className={styles.statIcon}
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="12" cy="12" r="10" fill="var(--green-color)" />
-                <path
-                  d="M8 12.5L10.5 15L16 9.5"
-                  stroke="white"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+                width={24}
+                height={24}
+                circleColor="var(--green-color)"
+                strokeColor="white"
+              />
               <p className={styles.correctText}>{correctCount} goed</p>
             </div>
             <div className={styles.statItem}>
-              <svg
+              <IncorrectIcon
                 className={styles.statIcon}
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="12" cy="12" r="10" fill="var(--red-color)" />
-                <path
-                  d="M8 8L16 16M16 8L8 16"
-                  stroke="white"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                />
-              </svg>
+                width={24}
+                height={24}
+                circleColor="var(--red-color)"
+                strokeColor="white"
+              />
               <p className={styles.incorrectText}>{incorrectCount} fout</p>
             </div>
           </div>

@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import MathQuestionType from "../quiz/MathQuestion";
 import styles from "../styles/MathQuestion.module.css";
+import CorrectIcon from "./CorrectIcon.tsx";
+import IncorrectIcon from "./IncorrectIcon.tsx";
 import type { QuestionProps } from "./Question.tsx";
 
 interface MathQuestionProps extends QuestionProps {
@@ -40,41 +42,18 @@ export default function MathQuestion({
             readOnly={isAnswered}
           />
           {isAnswered && isCorrect && (
-            <svg
+            <CorrectIcon
               className={styles.icon}
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="12" cy="12" r="10" fill="var(--green-color)" />
-              <path
-                d="M8 12.5L10.5 15L16 9.5"
-                stroke="white"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+              circleColor="var(--green-color)"
+              strokeColor="white"
+            />
           )}
           {isAnswered && !isCorrect && (
-            <svg
+            <IncorrectIcon
               className={styles.icon}
-              width="40"
-              height="40"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="12" cy="12" r="10" fill="var(--red-color)" />
-              <path
-                d="M8 8L16 16M16 8L8 16"
-                stroke="white"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-            </svg>
+              circleColor="var(--red-color)"
+              strokeColor="white"
+            />
           )}
         </span>
       </p>
