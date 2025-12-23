@@ -31,8 +31,12 @@ export default function MathQuestion({
               isAnswered ? (isCorrect ? styles.correct : styles.incorrect) : ""
             }`}
             type="text"
+            inputMode="numeric"
             value={answer}
-            onChange={(event) => setAnswer(event.target.value)}
+            onChange={(event) => {
+              const val = event.target.value.replace(/\D/g, "");
+              setAnswer(val);
+            }}
             readOnly={isAnswered}
           />
           {isAnswered && isCorrect && (
