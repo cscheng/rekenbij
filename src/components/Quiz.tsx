@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { GeneratorOptions } from "../quiz/questionGenerators";
 import { generateQuestions } from "../quiz/questionGenerators";
 import QuizModel from "../quiz/Quiz";
@@ -31,15 +31,6 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
       setIsAnswered(false);
     }
   };
-
-  useEffect(() => {
-    if (isAnswered && isCorrect) {
-      const timer = setTimeout(() => {
-        next();
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [isAnswered, isCorrect]);
 
   if (isFinished) {
     return (
@@ -94,6 +85,9 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
           setIsAnswered(true);
           if (isCorrect) {
             setCorrectCount((prev) => prev + 1);
+            setTimeout(() => {
+              next();
+            }, 2000);
           } else {
             setIncorrectCount((prev) => prev + 1);
           }
