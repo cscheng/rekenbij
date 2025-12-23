@@ -5,7 +5,6 @@ import type { QuestionProps } from "./Question.tsx";
 
 interface MathQuestionProps extends QuestionProps {
   question: MathQuestionType;
-  onNext: () => void;
 }
 
 export default function MathQuestion({
@@ -14,7 +13,6 @@ export default function MathQuestion({
   isAnswered,
   isCorrect,
   setAnswer,
-  onNext,
 }: MathQuestionProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -81,17 +79,6 @@ export default function MathQuestion({
         <div className={styles.feedback}>
           <p className={styles.feedbackText}>
             Het juiste antwoord is {question.answer}.
-          </p>
-          <p>
-            <button
-              className={styles.nextButton}
-              onClick={(event) => {
-                event.preventDefault();
-                onNext();
-              }}
-            >
-              Volgende
-            </button>
           </p>
         </div>
       )}

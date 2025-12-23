@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { GeneratorOptions } from "../quiz/questionGenerators";
 import { generateQuestions } from "../quiz/questionGenerators";
 import QuizModel from "../quiz/Quiz";
+import styles from "../styles/Quiz.module.css";
 import Question from "./Question.tsx";
 
 export default function Quiz(generatorOptions: GeneratorOptions) {
@@ -56,8 +57,20 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
         isAnswered={isAnswered}
         isCorrect={isCorrect}
         setAnswer={setAnswer}
-        onNext={next}
       />
+      {isAnswered && !isCorrect && (
+        <div className={styles.buttonContainer}>
+          <button
+            className={styles.nextButton}
+            onClick={(event) => {
+              event.preventDefault();
+              next();
+            }}
+          >
+            Volgende
+          </button>
+        </div>
+      )}
     </form>
   );
 }

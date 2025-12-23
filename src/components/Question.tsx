@@ -8,7 +8,6 @@ export interface QuestionProps {
   isAnswered: boolean;
   isCorrect: boolean;
   setAnswer: (answer: string) => void;
-  onNext: () => void;
 }
 
 const questionComponentMap = new Map([
@@ -21,7 +20,6 @@ export default function Question({
   isAnswered,
   isCorrect,
   setAnswer,
-  onNext,
 }: QuestionProps) {
   for (const [QuestionClass, QuestionComponent] of questionComponentMap) {
     if (question instanceof QuestionClass) {
@@ -32,7 +30,6 @@ export default function Question({
           isAnswered={isAnswered}
           isCorrect={isCorrect}
           setAnswer={setAnswer}
-          onNext={onNext}
         />
       );
     }
