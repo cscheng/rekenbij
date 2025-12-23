@@ -9,8 +9,7 @@ import Question from "./Question.tsx";
 
 export default function Quiz(generatorOptions: GeneratorOptions) {
   const quiz = useMemo(() => {
-    const questions = generateQuestions(generatorOptions);
-    return new QuizModel(questions);
+    return new QuizModel(() => generateQuestions(generatorOptions));
   }, [generatorOptions]);
   const [question, setQuestion] = useState(() => quiz.getCurrentQuestion());
   const [answer, setAnswer] = useState("");

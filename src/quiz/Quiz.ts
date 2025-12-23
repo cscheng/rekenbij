@@ -3,10 +3,18 @@ import type Question from "./Question";
 export default class Quiz {
   private current: number = 0;
   private questions: Question[] = [];
+  private questionGenerator: () => Question[];
   isFinished: boolean = false;
 
-  constructor(questions: Question[]) {
-    this.questions = questions;
+  constructor(questionGenerator: () => Question[]) {
+    this.questionGenerator = questionGenerator;
+    this.questions = questionGenerator();
+  }
+
+  restart(): void {
+    this.current = 0;
+    this.isFinished = false;
+    this.questions = this.questionGenerator();
   }
 
   getCurrentQuestion(): Question {
