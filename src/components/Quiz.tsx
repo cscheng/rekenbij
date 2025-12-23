@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { GeneratorOptions } from "../quiz/questionGenerators";
 import { generateQuestions } from "../quiz/questionGenerators";
 import QuizModel from "../quiz/Quiz";
@@ -6,6 +6,9 @@ import styles from "../styles/Quiz.module.css";
 import CorrectIcon from "./CorrectIcon.tsx";
 import IncorrectIcon from "./IncorrectIcon.tsx";
 import Question from "./Question.tsx";
+
+// Delay (in ms) before auto-advancing to the next question after answering
+const AUTO_ADVANCE_DELAY = 1500;
 
 export default function Quiz(generatorOptions: GeneratorOptions) {
   const quiz = useMemo(() => {
@@ -19,8 +22,12 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
   const totalQuestions = quiz.getTotalQuestions();
   const [correctCount, setCorrectCount] = useState(0);
   const [incorrectCount, setIncorrectCount] = useState(0);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const next = () => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
     if (quiz.isFinished) {
       setIsFinished(true);
     } else {
@@ -94,15 +101,19 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
+        if (isAnswered) {
+          next();
+          return;
+        }
         if (answer && !isAnswered) {
           const isCorrect = quiz.submitAnswer(answer);
           setIsCorrect(isCorrect);
           setIsAnswered(true);
           if (isCorrect) {
             setCorrectCount((prev) => prev + 1);
-            setTimeout(() => {
+            timer.current = setTimeout(() => {
               next();
-            }, 2000);
+            }, AUTO_ADVANCE_DELAY);
           } else {
             setIncorrectCount((prev) => prev + 1);
           }
