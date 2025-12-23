@@ -1,7 +1,7 @@
 .mathQuestion {
   margin: 0 auto;
   width: var(--max-width);
-  padding-top: calc(50vh - 64px - 116px / 2);
+  padding-top: calc(50vh - 108px - 116px / 2);
 }
 
 .equation {

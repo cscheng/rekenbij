@@ -13,6 +13,14 @@ export default class Quiz {
     return this.questions[this.current];
   }
 
+  getCurrentIndex(): number {
+    return this.current;
+  }
+
+  getTotalQuestions(): number {
+    return this.questions.length;
+  }
+
   next(): void {
     if (this.current < this.questions.length - 1) {
       this.current++;

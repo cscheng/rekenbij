@@ -40,6 +40,12 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
     return <p>Klaar!</p>;
   }
 
+  const currentIndex = quiz.getCurrentIndex();
+  const totalQuestions = quiz.getTotalQuestions();
+  const currentQuestionNumber = currentIndex + 1;
+  const progressPercentage =
+    ((currentIndex + (isAnswered ? 1 : 0)) / totalQuestions) * 100;
+
   return (
     <form
       onSubmit={(event) => {
@@ -51,6 +57,17 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
         }
       }}
     >
+      <div className={styles.progressContainer}>
+        <div className={styles.progressBar}>
+          <div
+            className={styles.progressFill}
+            style={{ width: `${progressPercentage}%` }}
+          />
+          <div className={styles.progressLabel}>
+            {currentQuestionNumber} / {totalQuestions}
+          </div>
+        </div>
+      </div>
       <Question
         question={question}
         answer={answer}
