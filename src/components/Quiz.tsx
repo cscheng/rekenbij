@@ -15,6 +15,9 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
   const [isCorrect, setIsCorrect] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const totalQuestions = quiz.getTotalQuestions();
+  const [correctCount, setCorrectCount] = useState(0);
+  const [incorrectCount, setIncorrectCount] = useState(0);
 
   const next = () => {
     if (quiz.isFinished) {
@@ -37,11 +40,59 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
   }, [isAnswered, isCorrect]);
 
   if (isFinished) {
-    return <p>Klaar!</p>;
+    return (
+      <div className={styles.resultsContainer}>
+        <div className={styles.resultsCard}>
+          <h1 className={styles.resultsTitle}>Goed gedaan!</h1>
+          <div className={styles.resultsStats}>
+            <p className={styles.totalText}>
+              Je hebt {totalQuestions} vragen beantwoord:
+            </p>
+            <div className={styles.statItem}>
+              <svg
+                className={styles.statIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="12" cy="12" r="10" fill="var(--green-color)" />
+                <path
+                  d="M8 12.5L10.5 15L16 9.5"
+                  stroke="white"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <p className={styles.correctText}>{correctCount} goed</p>
+            </div>
+            <div className={styles.statItem}>
+              <svg
+                className={styles.statIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="12" cy="12" r="10" fill="var(--red-color)" />
+                <path
+                  d="M8 8L16 16M16 8L8 16"
+                  stroke="white"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <p className={styles.incorrectText}>{incorrectCount} fout</p>
+            </div>
+          </div>
+          <a href="/" className={styles.quitButton}>
+            Klaar
+          </a>
+        </div>
+      </div>
+    );
   }
 
   const currentIndex = quiz.getCurrentIndex();
-  const totalQuestions = quiz.getTotalQuestions();
   const currentQuestionNumber = currentIndex + 1;
   const progressPercentage =
     ((currentIndex + (isAnswered ? 1 : 0)) / totalQuestions) * 100;
@@ -50,10 +101,15 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (answer) {
+        if (answer && !isAnswered) {
           const isCorrect = quiz.submitAnswer(answer);
           setIsCorrect(isCorrect);
           setIsAnswered(true);
+          if (isCorrect) {
+            setCorrectCount((prev) => prev + 1);
+          } else {
+            setIncorrectCount((prev) => prev + 1);
+          }
         }
       }}
     >
