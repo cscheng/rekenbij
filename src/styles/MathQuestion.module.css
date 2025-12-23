@@ -51,6 +51,10 @@
   color: #000;
   caret-color: #4f9efc;
 
+  &:read-only {
+    caret-color: transparent;
+  }
+
   &.correct {
     border-color: var(--green-color);
   }
