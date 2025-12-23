@@ -31,6 +31,17 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
     }
   };
 
+  const restart = () => {
+    quiz.restart();
+    setQuestion(quiz.getCurrentQuestion());
+    setAnswer("");
+    setIsCorrect(false);
+    setIsAnswered(false);
+    setIsFinished(false);
+    setCorrectCount(0);
+    setIncorrectCount(0);
+  };
+
   if (isFinished) {
     return (
       <div className={styles.resultsContainer}>
@@ -61,9 +72,14 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
               <p className={styles.incorrectText}>{incorrectCount} fout</p>
             </div>
           </div>
-          <a href="/" className={styles.quitButton}>
-            Klaar
-          </a>
+          <div className={styles.resultsButtonContainer}>
+            <button className={styles.restartButton} onClick={restart}>
+              Opnieuw
+            </button>
+            <a href="/" className={styles.quitButton}>
+              Klaar
+            </a>
+          </div>
         </div>
       </div>
     );

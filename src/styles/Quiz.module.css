@@ -133,6 +133,35 @@
   color: var(--red-color);
 }
 
+.resultsButtonContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.restartButton {
+  display: inline-block;
+  border-radius: 27px;
+  border-width: 2px;
+  border-style: solid;
+  height: 54px;
+  padding: 0 2rem;
+  font-size: 16px;
+  line-height: 50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.1s;
+  background-color: #64748b;
+  border-color: #64748b;
+  color: white;
+
+  &:hover {
+    background-color: white;
+    color: #64748b;
+  }
+}
+
 .quitButton {
   display: inline-block;
   border-radius: 27px;
