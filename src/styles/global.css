@@ -29,6 +29,8 @@
   --max-width: 600px;
 
   --font-family: ui-rounded, Nunito, sans-serif;
+
+  --card-border-radius: 24px;
 }
 
 * {
