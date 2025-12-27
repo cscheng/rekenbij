@@ -44,14 +44,14 @@ export default function MathQuestion({
           {isAnswered && isCorrect && (
             <CorrectIcon
               className={styles.icon}
-              circleColor="var(--green-color)"
+              circleColor="var(--color-green)"
               strokeColor="white"
             />
           )}
           {isAnswered && !isCorrect && (
             <IncorrectIcon
               className={styles.icon}
-              circleColor="var(--red-color)"
+              circleColor="var(--color-red)"
               strokeColor="white"
             />
           )}

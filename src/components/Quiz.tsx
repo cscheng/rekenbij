@@ -63,7 +63,7 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
                 className={styles.statIcon}
                 width={24}
                 height={24}
-                circleColor="var(--green-color)"
+                circleColor="var(--color-green)"
                 strokeColor="white"
               />
               <p className={styles.correctText}>{correctCount} goed</p>
@@ -73,7 +73,7 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
                 className={styles.statIcon}
                 width={24}
                 height={24}
-                circleColor="var(--red-color)"
+                circleColor="var(--color-red)"
                 strokeColor="white"
               />
               <p className={styles.incorrectText}>{incorrectCount} fout</p>

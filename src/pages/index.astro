@@ -15,7 +15,7 @@ const categories = getStaticPaths();
   h1 {
     margin: 0 0 1rem;
     font-weight: normal;
-    color: var(--text-color);
+    color: var(--color-text);
   }
 
   ul {
@@ -48,14 +48,14 @@ const categories = getStaticPaths();
 
     .card-body {
       padding: var(--card-padding);
-      color: var(--text-color);
+      color: var(--color-text);
       font-size: 20px;
     }
 
     &[data-category="plussommen"] {
       .card-top {
-        background-color: color-mix(in srgb, var(--green-color) 30%, white);
-        color: var(--green-color);
+        background-color: color-mix(in srgb, var(--color-green) 30%, white);
+        color: var(--color-green);
 
         &::before {
           content: "+";
@@ -63,14 +63,14 @@ const categories = getStaticPaths();
       }
 
       &:hover {
-        background-color: color-mix(in srgb, var(--green-color) 40%, white);
+        background-color: color-mix(in srgb, var(--color-green) 40%, white);
       }
     }
 
     &[data-category="minsommen"] {
       .card-top {
-        background-color: color-mix(in srgb, var(--orange-color) 30%, white);
-        color: var(--orange-color);
+        background-color: color-mix(in srgb, var(--color-orange) 30%, white);
+        color: var(--color-orange);
 
         &::before {
           content: "−";
@@ -78,14 +78,14 @@ const categories = getStaticPaths();
       }
 
       &:hover {
-        background-color: color-mix(in srgb, var(--orange-color) 40%, white);
+        background-color: color-mix(in srgb, var(--color-orange) 40%, white);
       }
     }
 
     &[data-category="tafels"] {
       .card-top {
-        background-color: color-mix(in srgb, var(--blue-color) 30%, white);
-        color: var(--blue-color);
+        background-color: color-mix(in srgb, var(--color-blue) 30%, white);
+        color: var(--color-blue);
 
         &::before {
           content: "×";
@@ -93,7 +93,7 @@ const categories = getStaticPaths();
       }
 
       &:hover {
-        background-color: color-mix(in srgb, var(--blue-color) 40%, white);
+        background-color: color-mix(in srgb, var(--color-blue) 40%, white);
       }
     }
   }

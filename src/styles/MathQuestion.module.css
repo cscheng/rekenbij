@@ -56,11 +56,11 @@
   }
 
   &.correct {
-    border-color: var(--green-color);
+    border-color: var(--color-green);
   }
 
   &.incorrect {
-    border-color: var(--red-color);
+    border-color: var(--color-red);
   }
 }
 

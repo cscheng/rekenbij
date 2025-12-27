@@ -19,7 +19,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  background-color: var(--yellow-color);
+  background-color: var(--color-yellow);
   border-radius: 10px;
   transition: width 0.3s ease;
 }
@@ -89,14 +89,14 @@
 .resultsTitle {
   margin: 0 0 1rem;
   font-weight: normal;
-  color: var(--text-color);
+  color: var(--color-text);
   font-size: 2rem;
 }
 
 .resultsStats {
   margin-bottom: 2rem;
   font-size: 1.2rem;
-  color: var(--text-color);
+  color: var(--color-text);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -126,11 +126,11 @@
 }
 
 .correctText {
-  color: #76bc3d; /* A bit darker than var(--green-color) for better contrast */
+  color: #76bc3d; /* A bit darker than var(--color-green) for better contrast */
 }
 
 .incorrectText {
-  color: var(--red-color);
+  color: var(--color-red);
 }
 
 .resultsButtonContainer {
@@ -174,12 +174,12 @@
   text-decoration: none;
   cursor: pointer;
   transition: all 0.1s;
-  background-color: var(--blue-color, #3b82f6);
-  border-color: var(--blue-color, #3b82f6);
+  background-color: var(--color-blue, #3b82f6);
+  border-color: var(--color-blue, #3b82f6);
   color: white;
 
   &:hover {
     background-color: white;
-    color: var(--blue-color, #3b82f6);
+    color: var(--color-blue, #3b82f6);
   }
 }

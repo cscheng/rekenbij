@@ -21,15 +21,15 @@ const quizzes = getQuizPaths(category);
     padding: 2rem;
 
     &[data-category="plussommen"] {
-      background-color: color-mix(in srgb, var(--green-color) 15%, white);
+      background-color: color-mix(in srgb, var(--color-green) 15%, white);
     }
 
     &[data-category="minsommen"] {
-      background-color: color-mix(in srgb, var(--orange-color) 15%, white);
+      background-color: color-mix(in srgb, var(--color-orange) 15%, white);
     }
 
     &[data-category="tafels"] {
-      background-color: color-mix(in srgb, var(--blue-color) 15%, white);
+      background-color: color-mix(in srgb, var(--color-blue) 15%, white);
     }
   }
 
@@ -37,7 +37,7 @@ const quizzes = getQuizPaths(category);
     display: inline-block;
     margin-bottom: 0.5rem;
     padding: 0.25rem 0.5rem;
-    color: var(--text-color);
+    color: var(--color-text);
     text-decoration: none;
     font-size: 14px;
     transition: color 0.1s;
@@ -48,25 +48,25 @@ const quizzes = getQuizPaths(category);
     }
 
     &:hover {
-      color: color-mix(in srgb, var(--text-color) 60%, white);
+      color: color-mix(in srgb, var(--color-text) 60%, white);
     }
   }
 
   &[data-category="plussommen"] .back-button {
-    background-color: color-mix(in srgb, var(--green-color) 15%, white);
+    background-color: color-mix(in srgb, var(--color-green) 15%, white);
   }
 
   &[data-category="minsommen"] {
-    background-color: color-mix(in srgb, var(--orange-color) 15%, white);
+    background-color: color-mix(in srgb, var(--color-orange) 15%, white);
   }
 
   &[data-category="tafels"] {
-    background-color: color-mix(in srgb, var(--blue-color) 15%, white);
+    background-color: color-mix(in srgb, var(--color-blue) 15%, white);
   }
 
   h1 {
     margin: 0 0 1rem;
-    color: var(--text-color);
+    color: var(--color-text);
   }
 
   nav {
@@ -90,7 +90,7 @@ const quizzes = getQuizPaths(category);
       font-size: 16px;
       line-height: 54px;
       text-decoration: none;
-      color: var(--text-color);
+      color: var(--color-text);
       transition: all 0.1s;
 
       &::after {
@@ -104,41 +104,41 @@ const quizzes = getQuizPaths(category);
 
       &:hover {
         background-color: white;
-        color: var(--text-color);
+        color: var(--color-text);
       }
     }
   }
 
   [data-category="plussommen"] nav a {
-    background-color: var(--green-color);
-    border-color: var(--green-color);
+    background-color: var(--color-green);
+    border-color: var(--color-green);
     color: white;
 
     &:hover {
       background-color: white;
-      color: var(--green-color);
+      color: var(--color-green);
     }
   }
 
   [data-category="minsommen"] nav a {
-    background-color: var(--orange-color);
-    border-color: var(--orange-color);
+    background-color: var(--color-orange);
+    border-color: var(--color-orange);
     color: white;
 
     &:hover {
       background-color: white;
-      color: var(--orange-color);
+      color: var(--color-orange);
     }
   }
 
   [data-category="tafels"] nav a {
-    background-color: var(--blue-color);
-    border-color: var(--blue-color);
+    background-color: var(--color-blue);
+    border-color: var(--color-blue);
     color: white;
 
     &:hover {
       background-color: white;
-      color: var(--blue-color);
+      color: var(--color-blue);
     }
   }
 </style>
