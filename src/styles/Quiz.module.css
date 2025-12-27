@@ -19,7 +19,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  background-color: color-mix(in srgb, var(--color-yellow) 60%, white);
+  background-color: color-mix(in srgb, var(--color-blue) 80%, white);
   border-radius: 10px;
   transition: width 0.3s ease;
 }
