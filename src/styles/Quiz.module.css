@@ -86,8 +86,9 @@
 
 .resultsCard {
   margin: 0 auto;
+  border: 1px solid rgba(33, 34, 38, 0.06);
   border-radius: var(--card-border-radius);
-  background-color: color-mix(in srgb, var(--color-yellow) 15%, white);
+  background-color: rgb(248, 249, 252);
   padding: 1.5rem;
   width: 100%;
   max-width: 500px;
@@ -98,6 +99,7 @@
 
   h2 {
     margin-bottom: 1rem;
+    font-weight: normal;
     font-size: 2rem;
   }
 
@@ -125,7 +127,7 @@
 }
 
 .resultsCorrect {
-  color: color-mix(in srgb, var(--color-green) 90%, black);
+  color: color-mix(in srgb, var(--color-green) 95%, black);
 }
 
 .resultsIncorrect {
@@ -149,7 +151,6 @@
     border-radius: calc(var(--button-size) / 2);
     padding: 0;
     height: var(--button-size);
-    color: inherit;
     font-weight: bold;
     font-size: 1rem;
     line-height: 1;
@@ -159,20 +160,20 @@
 }
 
 .restartButton {
-  border: 1px solid var(--color-yellow);
-  background-color: white;
-  color: var(--color-yellow);
+  border: none;
+  background-color: black;
+  color: white;
 
   &:hover {
-    background-color: color-mix(in srgb, var(--color-yellow) 25%, white);
+    background-color: color-mix(in srgb, black 80%, white);
   }
 }
 
 .quitButton {
-  background-color: var(--color-yellow);
-  color: white;
+  background-color: rgb(225, 230, 236);
+  color: black;
 
   &:hover {
-    background-color: color-mix(in srgb, var(--color-yellow) 75%, white);
+    background-color: color-mix(in srgb, rgb(225, 230, 236) 80%, white);
   }
 }
