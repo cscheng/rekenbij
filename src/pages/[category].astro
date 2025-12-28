@@ -1,5 +1,4 @@
 ---
-import Header from "../components/Header.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCategoryPaths, getQuizPaths } from "../routes";
 
@@ -15,7 +14,7 @@ const quizzes = getQuizPaths(category);
 
 <style>
   main {
-    margin: 0 auto 20px;
+    margin: 20px auto;
     border-radius: 16px;
     padding: 2rem;
     max-width: var(--max-width);
@@ -143,7 +142,6 @@ const quizzes = getQuizPaths(category);
 </style>
 
 <BaseLayout title={title}>
-  <Header showBackButton={true} />
   <main data-category={category}>
     <a href="/" class="back-button">Terug</a>
     <h1>{title}</h1>
