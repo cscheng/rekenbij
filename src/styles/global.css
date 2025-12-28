@@ -32,9 +32,11 @@
 
   --top-bar-height: 48px;
 
-  --card-border-radius: 16px;
-  --card-padding: 16px;
+  --card-border-radius: 1rem;
+  --card-padding: 1rem;
   --card-top-height: 150px;
+
+  --button-size: 3rem;
 }
 
 /*

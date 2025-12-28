@@ -53,33 +53,33 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
     return (
       <div className={styles.resultsContainer}>
         <div className={styles.resultsCard}>
-          <h1 className={styles.resultsTitle}>Goed gedaan!</h1>
-          <div className={styles.resultsStats}>
-            <p className={styles.totalText}>
-              Je hebt {totalQuestions} vragen beantwoord:
-            </p>
-            <div className={styles.statItem}>
-              <CorrectIcon
-                className={styles.statIcon}
-                width={24}
-                height={24}
-                circleColor="var(--color-green)"
-                strokeColor="white"
-              />
-              <p className={styles.correctText}>{correctCount} goed</p>
-            </div>
-            <div className={styles.statItem}>
-              <IncorrectIcon
-                className={styles.statIcon}
-                width={24}
-                height={24}
-                circleColor="var(--color-red)"
-                strokeColor="white"
-              />
-              <p className={styles.incorrectText}>{incorrectCount} fout</p>
-            </div>
+          <div className={styles.resultsCardBody}>
+            <h2>Goed gedaan!</h2>
+            <p>Je hebt {totalQuestions} vragen beantwoord:</p>
+            <ul>
+              <li className={styles.resultsCorrect}>
+                <CorrectIcon
+                  className={styles.statIcon}
+                  width={24}
+                  height={24}
+                  circleColor="var(--color-green)"
+                  strokeColor="white"
+                />
+                {correctCount} goed
+              </li>
+              <li className={styles.resultsIncorrect}>
+                <IncorrectIcon
+                  className={styles.statIcon}
+                  width={24}
+                  height={24}
+                  circleColor="var(--color-red)"
+                  strokeColor="white"
+                />
+                {incorrectCount} fout
+              </li>
+            </ul>
           </div>
-          <div className={styles.resultsButtonContainer}>
+          <div className={styles.resultsCardBottom}>
             <button className={styles.restartButton} onClick={restart}>
               Opnieuw
             </button>

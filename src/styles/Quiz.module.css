@@ -83,114 +83,98 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: calc(
-    100vh - 300px
-  ); /* Centers relative to viewport top minus header */
+  min-height: 100vh;
 }
 
 .resultsCard {
   margin: 0 auto;
-  border-radius: 16px;
-  background-color: #f8f5f2;
-  padding: 2rem;
+  border-radius: var(--card-border-radius);
+  background-color: color-mix(in srgb, var(--color-yellow) 15%, white);
+  padding: 1.5rem;
   width: 100%;
-  max-width: var(--max-width);
-  text-align: left;
+  max-width: 500px;
 }
 
-.resultsTitle {
-  margin-bottom: 1rem;
-  color: var(--color-text);
-  font-weight: normal;
-  font-size: 2rem;
+.resultsCardBody {
+  margin-bottom: 1.5rem;
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    margin-bottom: 1rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 
-.resultsStats {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-  color: var(--color-text);
-  font-size: 1.2rem;
+.resultsCorrect {
+  color: color-mix(in srgb, var(--color-green) 90%, black);
 }
 
-.totalText {
-  margin-bottom: 0.5rem;
-  color: #64748b;
-  font-size: 1.1rem;
-}
-
-.statItem {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.statItem p {
-  font-weight: 700;
-}
-
-.statIcon {
-  width: 28px;
-  height: 28px;
-}
-
-.correctText {
-  color: #76bc3d; /* A bit darker than var(--color-green) for better contrast */
-}
-
-.incorrectText {
+.resultsIncorrect {
   color: var(--color-red);
 }
 
-.resultsButtonContainer {
+.resultsCardBottom {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  gap: 8px;
+
+  button,
+  a {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.1s;
+    cursor: pointer;
+    border-radius: calc(var(--button-size) / 2);
+    padding: 0;
+    height: var(--button-size);
+    color: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1;
+    text-align: center;
+    text-decoration: none;
+  }
 }
 
 .restartButton {
-  display: inline-block;
-  transition: all 0.1s;
-  cursor: pointer;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #64748b;
-  border-radius: 27px;
-  background-color: #64748b;
-  padding: 0 2rem;
-  height: 54px;
-  color: white;
-  font-size: 16px;
-  line-height: 50px;
-  text-decoration: none;
+  border: 1px solid var(--color-yellow);
+  background-color: white;
+  color: var(--color-yellow);
 
   &:hover {
-    background-color: white;
-    color: #64748b;
+    background-color: color-mix(in srgb, var(--color-yellow) 25%, white);
   }
 }
 
 .quitButton {
-  display: inline-block;
-  transition: all 0.1s;
-  cursor: pointer;
-  border-width: 2px;
-  border-style: solid;
-  border-color: var(--color-blue, #3b82f6);
-  border-radius: 27px;
-  background-color: var(--color-blue, #3b82f6);
-  padding: 0 2rem;
-  height: 54px;
+  background-color: var(--color-yellow);
   color: white;
-  font-size: 16px;
-  line-height: 50px;
-  text-decoration: none;
 
   &:hover {
-    background-color: white;
-    color: var(--color-blue, #3b82f6);
+    background-color: color-mix(in srgb, var(--color-yellow) 75%, white);
   }
 }
