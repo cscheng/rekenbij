@@ -41,6 +41,7 @@ const categories = getStaticPaths();
       align-items: center;
       border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
       height: var(--card-top-height);
+      color: white;
       font-weight: bold;
       font-size: 3rem;
     }
@@ -48,13 +49,12 @@ const categories = getStaticPaths();
     .card-body {
       padding: var(--card-padding);
       color: var(--color-text);
-      font-size: 20px;
+      font-size: 1.25rem;
     }
 
     &[data-category="plussommen"] {
       .card-top {
-        background-color: color-mix(in srgb, var(--color-green) 30%, white);
-        color: var(--color-green);
+        background-color: color-mix(in srgb, var(--color-green) 70%, white);
 
         &::before {
           content: "+";
@@ -62,14 +62,13 @@ const categories = getStaticPaths();
       }
 
       &:hover {
-        background-color: color-mix(in srgb, var(--color-green) 40%, white);
+        background-color: color-mix(in srgb, var(--color-green) 50%, white);
       }
     }
 
     &[data-category="minsommen"] {
       .card-top {
-        background-color: color-mix(in srgb, var(--color-orange) 30%, white);
-        color: var(--color-orange);
+        background-color: color-mix(in srgb, var(--color-orange) 70%, white);
 
         &::before {
           content: "−";
@@ -83,8 +82,7 @@ const categories = getStaticPaths();
 
     &[data-category="tafels"] {
       .card-top {
-        background-color: color-mix(in srgb, var(--color-blue) 30%, white);
-        color: var(--color-blue);
+        background-color: color-mix(in srgb, var(--color-blue) 70%, white);
 
         &::before {
           content: "×";
