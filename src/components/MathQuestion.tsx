@@ -60,9 +60,7 @@ export default function MathQuestion({
 
       {isAnswered && !isCorrect && (
         <div className={styles.feedback}>
-          <p className={styles.feedbackText}>
-            Het juiste antwoord is {question.answer}.
-          </p>
+          Het juiste antwoord is {question.answer}.
         </div>
       )}
     </section>

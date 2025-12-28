@@ -1,14 +1,16 @@
 .mathQuestion {
-  --equation-height: 120px;
+  --equation-font-size: 100px;
+  --equation-height: calc(var(--equation-font-size) * 1.36);
 
   margin: calc(50vh - var(--equation-height) / 2) auto 0;
   width: var(--max-width);
 }
 
 .equation {
-  height: var(--equation-height);
+  margin-top: calc(var(--equation-height) * -0.5);
+  margin-bottom: 2rem;
   font-weight: 700;
-  font-size: calc(var(--equation-height) * 0.8);
+  font-size: var(--equation-font-size);
   line-height: var(--equation-height);
   text-align: center;
 }
@@ -17,6 +19,36 @@
   display: inline-block;
   position: relative;
   vertical-align: baseline;
+}
+
+.numberInput {
+  display: inline-block;
+  transition: all 0.1s;
+  outline: none;
+  border: 4px solid #e2e8f0;
+  border-radius: var(--card-border-radius);
+  background-color: #fff;
+  padding: 0.5rem;
+  width: 3.5ch;
+  height: calc(var(--equation-height) + 1rem);
+  color: #000;
+  caret-color: var(--color-blue);
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: 1;
+  text-align: center;
+
+  &:read-only {
+    caret-color: transparent;
+  }
+
+  &.correct {
+    border-color: var(--color-green);
+  }
+
+  &.incorrect {
+    border-color: var(--color-red);
+  }
 }
 
 .icon {
@@ -36,40 +68,8 @@
   }
 }
 
-.numberInput {
-  display: inline-block;
-  transition: all 0.1s;
-  outline: none;
-  border: 4px solid #e2e8f0;
-  border-radius: var(--card-border-radius);
-  background-color: #fff;
-  padding: 0.5rem;
-  width: 3.5ch;
-  color: #000;
-  caret-color: var(--color-blue);
-  font-weight: inherit;
-  font-size: inherit;
-  font-family: inherit;
-  text-align: center;
-
-  &:read-only {
-    caret-color: transparent;
-  }
-
-  &.correct {
-    border-color: var(--color-green);
-  }
-
-  &.incorrect {
-    border-color: var(--color-red);
-  }
-}
-
 .feedback {
-  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
   text-align: center;
-}
-
-.feedbackText {
-  margin-bottom: 1rem;
 }
