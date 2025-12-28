@@ -13,6 +13,8 @@
 }
 
 :root {
+  --font-family: ui-rounded, Nunito, sans-serif;
+
   --color-background: #fff;
   --color-text: #1b0000;
   --color-secondary-text: #dcd7d1;
@@ -28,7 +30,7 @@
 
   --max-width: 600px;
 
-  --font-family: ui-rounded, Nunito, sans-serif;
+  --top-bar-height: 48px;
 
   --card-border-radius: 16px;
   --card-padding: 16px;

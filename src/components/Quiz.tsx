@@ -131,26 +131,28 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
           </div>
         </div>
       </div>
-      <Question
-        question={question}
-        answer={answer}
-        isAnswered={isAnswered}
-        isCorrect={isCorrect}
-        setAnswer={setAnswer}
-      />
-      {isAnswered && !isCorrect && (
-        <div className={styles.buttonContainer}>
-          <button
-            className={styles.nextButton}
-            onClick={(event) => {
-              event.preventDefault();
-              next();
-            }}
-          >
-            Volgende
-          </button>
-        </div>
-      )}
+      <div className={styles.questionContainer}>
+        <Question
+          question={question}
+          answer={answer}
+          isAnswered={isAnswered}
+          isCorrect={isCorrect}
+          setAnswer={setAnswer}
+        />
+        {isAnswered && !isCorrect && (
+          <div className={styles.buttonContainer}>
+            <button
+              className={styles.nextButton}
+              onClick={(event) => {
+                event.preventDefault();
+                next();
+              }}
+            >
+              Volgende
+            </button>
+          </div>
+        )}
+      </div>
     </form>
   );
 }

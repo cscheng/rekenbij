@@ -15,25 +15,34 @@ const parentPath = `/${pathSegments.slice(0, -1).join("/")}/`;
 
 <style>
   header {
-    margin: 0 auto;
-    max-width: 1000px;
-    padding: 1rem 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
 
-    nav a {
-      display: inline-block;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background-color: #e2e8f0;
-      color: white;
-      font-size: 16px;
-      line-height: 32px;
-      text-decoration: none;
-      text-align: center;
-      transition: background-color 0.2s;
+    nav {
+      margin: 0 auto;
+      padding: 0.5rem 1rem;
+      max-width: 1000px;
+      height: var(--top-bar-height);
 
-      &:hover {
-        background-color: var(--color-grey);
+      a {
+        display: inline-block;
+        transition: background-color 0.2s;
+        border-radius: 50%;
+        background-color: #e2e8f0;
+        width: 32px;
+        height: 32px;
+        color: white;
+        font-size: 16px;
+        line-height: 32px;
+        text-align: center;
+        text-decoration: none;
+
+        &:hover {
+          background-color: var(--color-grey);
+        }
       }
     }
   }
