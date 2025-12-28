@@ -15,5 +15,8 @@
     "astro": "^5.16.6",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "prettier-plugin-css-order": "^2.1.2"
   }
 }
