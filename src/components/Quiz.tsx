@@ -149,7 +149,7 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
                   next();
                 }}
               >
-                Volgende
+                Verder
               </button>
             </div>
           )}
