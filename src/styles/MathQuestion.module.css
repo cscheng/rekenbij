@@ -43,10 +43,12 @@
 
   &.correct {
     border-color: var(--color-green);
+    background-color: color-mix(in srgb, var(--color-green) 20%, white);
   }
 
   &.incorrect {
     border-color: var(--color-red);
+    background-color: color-mix(in srgb, var(--color-red) 20%, white);
   }
 }
 
