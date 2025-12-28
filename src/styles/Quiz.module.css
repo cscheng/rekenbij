@@ -1,9 +1,9 @@
 .progressContainer {
   position: absolute;
-  top: var(--top-bar-height);
+  top: 14px;
   left: 0;
   z-index: 1;
-  padding: 8px 1rem;
+  padding: 0 1rem;
   width: 100%;
 }
 
@@ -14,7 +14,7 @@
   border-radius: 10px;
   background-color: #f1f5f9;
   width: 100%;
-  max-width: var(--max-width);
+  max-width: 500px;
   height: 20px;
   overflow: hidden;
 }

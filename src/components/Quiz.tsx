@@ -98,28 +98,7 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
     ((currentIndex + (isAnswered ? 1 : 0)) / totalQuestions) * 100;
 
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-        if (isAnswered) {
-          next();
-          return;
-        }
-        if (answer && !isAnswered) {
-          const isCorrect = quiz.submitAnswer(answer);
-          setIsCorrect(isCorrect);
-          setIsAnswered(true);
-          if (isCorrect) {
-            setCorrectCount((prev) => prev + 1);
-            timer.current = setTimeout(() => {
-              next();
-            }, AUTO_ADVANCE_DELAY);
-          } else {
-            setIncorrectCount((prev) => prev + 1);
-          }
-        }
-      }}
-    >
+    <>
       <div className={styles.progressContainer}>
         <div className={styles.progressBar}>
           <div
@@ -131,28 +110,51 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
           </div>
         </div>
       </div>
-      <div className={styles.questionContainer}>
-        <Question
-          question={question}
-          answer={answer}
-          isAnswered={isAnswered}
-          isCorrect={isCorrect}
-          setAnswer={setAnswer}
-        />
-        {isAnswered && !isCorrect && (
-          <div className={styles.buttonContainer}>
-            <button
-              className={styles.nextButton}
-              onClick={(event) => {
-                event.preventDefault();
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (isAnswered) {
+            next();
+            return;
+          }
+          if (answer && !isAnswered) {
+            const isCorrect = quiz.submitAnswer(answer);
+            setIsCorrect(isCorrect);
+            setIsAnswered(true);
+            if (isCorrect) {
+              setCorrectCount((prev) => prev + 1);
+              timer.current = setTimeout(() => {
                 next();
-              }}
-            >
-              Volgende
-            </button>
-          </div>
-        )}
-      </div>
-    </form>
+              }, AUTO_ADVANCE_DELAY);
+            } else {
+              setIncorrectCount((prev) => prev + 1);
+            }
+          }
+        }}
+      >
+        <div className={styles.questionContainer}>
+          <Question
+            question={question}
+            answer={answer}
+            isAnswered={isAnswered}
+            isCorrect={isCorrect}
+            setAnswer={setAnswer}
+          />
+          {isAnswered && !isCorrect && (
+            <div className={styles.buttonContainer}>
+              <button
+                className={styles.nextButton}
+                onClick={(event) => {
+                  event.preventDefault();
+                  next();
+                }}
+              >
+                Volgende
+              </button>
+            </div>
+          )}
+        </div>
+      </form>
+    </>
   );
 }
