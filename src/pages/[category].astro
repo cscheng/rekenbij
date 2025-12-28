@@ -15,10 +15,10 @@ const quizzes = getQuizPaths(category);
 
 <style>
   main {
-    border-radius: 16px;
-    max-width: var(--max-width);
     margin: 0 auto;
+    border-radius: 16px;
     padding: 2rem;
+    max-width: var(--max-width);
 
     &[data-category="plussommen"] {
       background-color: color-mix(in srgb, var(--color-green) 15%, white);
@@ -35,16 +35,16 @@ const quizzes = getQuizPaths(category);
 
   .back-button {
     display: inline-block;
+    transition: color 0.1s;
     margin-bottom: 0.5rem;
     padding: 0.25rem 0.5rem;
     color: var(--color-text);
-    text-decoration: none;
     font-size: 14px;
-    transition: color 0.1s;
+    text-decoration: none;
 
     &::before {
-      content: "← ";
       margin-right: 0.25rem;
+      content: "← ";
     }
 
     &:hover {
@@ -65,40 +65,39 @@ const quizzes = getQuizPaths(category);
   }
 
   h1 {
-    margin: 0 0 1rem;
+    margin-bottom: 1rem;
     color: var(--color-text);
   }
 
   nav {
     ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
+      padding: 0;
+      list-style: none;
     }
 
     a {
-      position: relative;
       display: block;
-      border-radius: 27px;
+      position: relative;
+      transition: all 0.1s;
       border-width: 2px;
       border-style: solid;
-      height: 54px;
+      border-radius: 27px;
       padding-left: 1.5rem;
+      height: 54px;
+      color: var(--color-text);
       font-size: 16px;
       line-height: 54px;
       text-decoration: none;
-      color: var(--color-text);
-      transition: all 0.1s;
 
       &::after {
-        content: "›";
         position: absolute;
-        right: 1.5rem;
         top: 50%;
+        right: 1.5rem;
         transform: translateY(-50%);
+        content: "›";
         font-size: 1.5rem;
       }
 
@@ -110,8 +109,8 @@ const quizzes = getQuizPaths(category);
   }
 
   [data-category="plussommen"] nav a {
-    background-color: var(--color-green);
     border-color: var(--color-green);
+    background-color: var(--color-green);
     color: white;
 
     &:hover {
@@ -121,8 +120,8 @@ const quizzes = getQuizPaths(category);
   }
 
   [data-category="minsommen"] nav a {
-    background-color: var(--color-orange);
     border-color: var(--color-orange);
+    background-color: var(--color-orange);
     color: white;
 
     &:hover {
@@ -132,8 +131,8 @@ const quizzes = getQuizPaths(category);
   }
 
   [data-category="tafels"] nav a {
-    background-color: var(--color-blue);
     border-color: var(--color-blue);
+    background-color: var(--color-blue);
     color: white;
 
     &:hover {

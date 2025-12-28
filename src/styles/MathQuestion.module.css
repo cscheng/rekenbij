@@ -6,7 +6,6 @@
 }
 
 .equation {
-  margin: 0;
   height: var(--equation-height);
   font-weight: 700;
   font-size: calc(var(--equation-height) * 0.8);
@@ -72,5 +71,5 @@
 }
 
 .feedbackText {
-  margin: 0 0 1rem;
+  margin-bottom: 1rem;
 }
