@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from "react";
+import { audioManager } from "../audio/AudioManager";
 import type { GeneratorOptions } from "../quiz/questionGenerators";
 import { generateQuestions } from "../quiz/questionGenerators";
 import QuizModel from "../quiz/Quiz";
@@ -122,11 +123,13 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
             setIsCorrect(isCorrect);
             setIsAnswered(true);
             if (isCorrect) {
+              audioManager.playCorrectSound();
               setCorrectCount((prev) => prev + 1);
               timer.current = setTimeout(() => {
                 next();
               }, AUTO_ADVANCE_DELAY);
             } else {
+              audioManager.playIncorrectSound();
               setIncorrectCount((prev) => prev + 1);
             }
           }
