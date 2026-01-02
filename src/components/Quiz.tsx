@@ -8,6 +8,8 @@ import CorrectIcon from "./CorrectIcon.tsx";
 import IncorrectIcon from "./IncorrectIcon.tsx";
 import Question from "./Question.tsx";
 
+const baseUrl = import.meta.env.BASE_URL;
+
 // Delay (in ms) before auto-advancing to the next question after answering
 const AUTO_ADVANCE_DELAY = 1500;
 
@@ -84,7 +86,7 @@ export default function Quiz(generatorOptions: GeneratorOptions) {
             <button className={styles.restartButton} onClick={restart}>
               Opnieuw
             </button>
-            <a href="/" className={styles.quitButton}>
+            <a href={baseUrl} className={styles.quitButton}>
               Klaar
             </a>
           </div>

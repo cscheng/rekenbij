@@ -10,6 +10,7 @@ const { title } = Astro.props;
 const { category } = Astro.params;
 
 const quizzes = getQuizPaths(category);
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <style>
@@ -143,7 +144,7 @@ const quizzes = getQuizPaths(category);
 
 <BaseLayout title={title}>
   <main data-category={category}>
-    <a href="/" class="back-button">Terug</a>
+    <a href={baseUrl} class="back-button">Terug</a>
     <h1>{title}</h1>
     <p>Kies een oefening</p>
     <nav>
@@ -151,7 +152,7 @@ const quizzes = getQuizPaths(category);
         {
           quizzes.map((quiz) => (
             <li>
-              <a href={`/${quiz.params.quiz}`}>{quiz.props.title}</a>
+              <a href={`${baseUrl}/${quiz.params.quiz}`}>{quiz.props.title}</a>
             </li>
           ))
         }

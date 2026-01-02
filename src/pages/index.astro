@@ -4,6 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getStaticPaths } from "./[category].astro";
 
 const categories = getStaticPaths();
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <style>
@@ -105,7 +106,7 @@ const categories = getStaticPaths();
           categories.map((category) => (
             <li>
               <a
-                href={`/${category.params.category}`}
+                href={`${baseUrl}/${category.params.category}`}
                 data-category={category.params.category}
               >
                 <div class="card-top" />
