@@ -5,5 +5,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://cscheng.github.io",
+  base: "/rekenbij",
   integrations: [react()],
 });
